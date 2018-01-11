@@ -1,0 +1,6 @@
+---
+db_host: 'localhost'
+backup_user: 'wsaadi'
+wordpress_db_user: 'admin'
+wordpress_db_password: 'admin'
+archive_uploads: false

@@ -1,0 +1,9 @@
+---
+- name: Backup WordPress
+  hosts: localhost
+  remote_user: root
+  # remote_user: user
+  # sudo: yes
+
+  roles:
+    - dump_wordpress

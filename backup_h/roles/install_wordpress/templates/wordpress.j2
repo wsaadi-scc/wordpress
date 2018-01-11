@@ -1,0 +1,30 @@
+<VirtualHost *:80>
+		{% include "includes/default_vhost.j2" %}
+
+		{% include "includes/upload_redirect.j2" %}
+
+		{% if not force_ssl_admin and force_http_auth_admin %}
+			{% include "includes/http_auth.j2" %}
+		{% endif %}
+
+</VirtualHost>
+
+{%  if force_ssl_admin %}
+
+<VirtualHost *:443>
+
+	{% include "includes/default_vhost.j2" %}
+
+	SSLEngine on
+	SSLCertificateFile    /etc/apache2/ssl/{{ ssl_crt_file }}
+	SSLCertificateKeyFile /etc/apache2/ssl/{{ ssl_pem_file }}
+
+	{% include "includes/upload_redirect.j2" %}
+
+	{% if force_http_auth_admin %}
+		{% include "includes/http_auth.j2" %}
+	{% endif %}
+
+</VirtualHost>
+
+{% endif %}

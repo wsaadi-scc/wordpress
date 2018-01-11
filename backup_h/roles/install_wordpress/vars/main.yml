@@ -1,0 +1,12 @@
+---
+db_host: 'localhost'
+wordpress_db_user: 'wordpress'
+wordpress_db_password: 'password'
+master_db_user: 'root'
+master_db_password: ''
+force_ssl_admin: false
+ssl_crt_file: server.crt
+ssl_pem_file: server.pem
+force_http_auth_admin: false
+htpasswd_file: '.htpasswd'
+wp_debug: false

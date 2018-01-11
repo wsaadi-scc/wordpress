@@ -1,0 +1,15 @@
+#takes a backup of a wordpress install, to get it ready for deployment.
+---
+#clear and recreate the backup directory
+- name: delete the old backup
+  local_action: file path=/srv/wordpress/backup_h state=absent
+- name: create new backup dir
+  local_action: file path=/srv/wordpress/backup_h state=directory
+
+#backup mysql
+- name: backup the wordpress mysql
+  mysql_db: name=wordpress login_user=wordpress login_password=secret login_host={{ db_host }} state=dump target="/srv/wordpress/backup_h.sql"
+
+#do a backup of all the files.
+- name: get the base files
+  local_action: command cp -R * {{ backup_user }}@localhost:/srv/wordpress/ /srv/wordpress/backup_h/
